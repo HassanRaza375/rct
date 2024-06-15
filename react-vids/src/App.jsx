@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       {/* <Counter /> */}
-      {/* <Todo /> */}
-      <Calculator />
+      <Todo />
+      {/* <Calculator /> */}
     </>
   );
 }
