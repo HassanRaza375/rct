@@ -1,4 +1,5 @@
 import React from "react";
+import { MdOutlineDelete } from "react-icons/md";
 
 const todoitem = (props) => {
   let { ItemName, ItemAdded_data, delclass } = props.data;
@@ -8,8 +9,11 @@ const todoitem = (props) => {
         <div className="col-lg-4">{ItemName}</div>
         <div className="col-lg-4">{ItemAdded_data}</div>
         <div className="col-lg-4">
-          <button className="btn btn-danger" onClick={props.handleeventlist}>
-            Delete
+          <button
+            className="btn btn-danger"
+            onClick={() => props.handleDel(ItemName)}
+          >
+            <MdOutlineDelete />
           </button>
         </div>
       </div>

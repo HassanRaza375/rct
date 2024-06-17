@@ -9,12 +9,19 @@ const todo = () => {
     { ItemName: "Orange", ItemAdded_data: "5/10/2023" },
     { ItemName: "Apple", ItemAdded_data: "3/10/2023" },
   ]);
-  let [todoval, setTodoval] = useState({});
-  const handleitemwords = (e) => {
-    console.log(e.target.value);
+
+  const AddEventHandler = (name, date) => {
+    const newobj = {};
+    newobj.ItemName = name;
+    newobj.ItemAdded_data = date;
+    const newarray = [...arrayitems, newobj];
+    setarrayitems(newarray);
   };
-  const handledatevalue = (e) => {
-    console.log(e.target.value);
+  const DeleteEvent = (id) => {
+    const newarray = arrayitems.filter((e) => {
+      return e.ItemName === id ? "" : e;
+    });
+    setarrayitems(newarray);
   };
   return (
     <>
@@ -25,14 +32,14 @@ const todo = () => {
           </div>
         </div>
       </div>
-      <AddTodo gettypedvalue={handleitemwords} getdatevalue={handledatevalue} />
-      {arrayitems.map((e, idx) => (
-        <TodoItem
-          data={e}
-          key={idx}
-          handleeventlist={() => console.log(e.ItemName)}
-        />
-      ))}
+      <AddTodo handleAdd={AddEventHandler} />
+      {arrayitems.length > 0 ? (
+        arrayitems.map((e, idx) => (
+          <TodoItem data={e} key={idx} handleDel={DeleteEvent} />
+        ))
+      ) : (
+        <AppName title="No Record Found" />
+      )}
       {/* <Feirebase /> */}
     </>
   );

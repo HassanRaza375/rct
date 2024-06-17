@@ -1,6 +1,6 @@
 import React from "react";
 
-const buttonscal = () => {
+const buttonscal = ({ handlecalculation }) => {
   const arraynumbers_calculator = [
     "C",
     1,
@@ -23,7 +23,9 @@ const buttonscal = () => {
   return (
     <>
       {arraynumbers_calculator.map((e, idx) => (
-        <span key={idx}>{e}</span>
+        <span key={idx} onClick={() => handlecalculation(e)}>
+          {e}
+        </span>
       ))}
     </>
   );

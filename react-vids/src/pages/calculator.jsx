@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Appname from "../components/appname";
 import Buttonscal from "../components/calcomponent/buttonscal";
 import Container from "../components/Custom/container";
 const calculator = () => {
+  const [invalue, setinvalue] = useState("");
+  const inputvalues = (e) => {
+    if (e === "C") {
+      setinvalue("");
+    } else if (e === "=") {
+      setinvalue(eval(invalue));
+    } else {
+      setinvalue((prevInvalue) => prevInvalue + e);
+    }
+  };
   return (
     <>
       <div className="container">
@@ -14,10 +24,10 @@ const calculator = () => {
       </div>
       <div className="container center-flex">
         <div className="card-b">
-          <input type="text" className="input-cal" />
+          <input type="text" className="input-cal" value={invalue} />
           <div className="operations-cal">
             <Container>
-              <Buttonscal />
+              <Buttonscal handlecalculation={inputvalues} />
             </Container>
           </div>
         </div>
